@@ -11,6 +11,8 @@ RSpec.describe Work, type: :model do
 
   describe 'associations' do
     it { is_expected.to belong_to(:depositor).class_name('User').with_foreign_key(:depositor_id) }
+    it { is_expected.to have_many(:work_creations) }
+    it { is_expected.to have_many(:aliases).through(:work_creations) }
   end
 
   describe '#title' do
