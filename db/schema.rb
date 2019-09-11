@@ -10,15 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_11_191651) do
+ActiveRecord::Schema.define(version: 2019_09_11_195157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "access_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "works", force: :cascade do |t|
     t.jsonb "metadata"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "depositor_id"
+    t.index ["depositor_id"], name: "index_works_on_depositor_id"
   end
 
+  add_foreign_key "works", "users", column: "depositor_id"
 end

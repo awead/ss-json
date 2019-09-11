@@ -5,6 +5,12 @@ require 'rails_helper'
 RSpec.describe Work, type: :model do
   describe 'table' do
     it { is_expected.to have_db_column(:metadata).of_type(:jsonb) }
+    it { is_expected.to have_db_column(:depositor_id) }
+    it { is_expected.to have_db_index(:depositor_id) }
+  end
+
+  describe 'associations' do
+    it { is_expected.to belong_to(:depositor).class_name('User').with_foreign_key(:depositor_id) }
   end
 
   describe '#title' do

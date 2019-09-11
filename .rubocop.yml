@@ -13,3 +13,7 @@ AllCops:
     - 'vendor/**/*'
     - 'bin/**/*'
     - 'node_modules/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/*/**'

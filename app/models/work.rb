@@ -5,4 +5,5 @@ class Work < ApplicationRecord
                  title: :string,
                  subtitle: :string,
                  keywords: [:string, array: true, default: []]
+  belongs_to :depositor, class_name: 'User', foreign_key: 'depositor_id', inverse_of: 'works'
 end
