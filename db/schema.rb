@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_11_203353) do
+ActiveRecord::Schema.define(version: 2019_09_13_200029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "access_controls", force: :cascade do |t|
+    t.string "access_level"
+    t.string "agent_type"
+    t.bigint "agent_id"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["agent_type", "agent_id"], name: "index_access_controls_on_agent_type_and_agent_id"
+    t.index ["resource_type", "resource_id"], name: "index_access_controls_on_resource_type_and_resource_id"
+  end
 
   create_table "aliases", force: :cascade do |t|
     t.string "display_name"
@@ -29,6 +41,12 @@ ActiveRecord::Schema.define(version: 2019_09_11_203353) do
     t.string "email"
     t.string "psu_id"
     t.string "orcid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
