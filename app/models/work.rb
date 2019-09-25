@@ -9,4 +9,5 @@ class Work < ApplicationRecord
   has_many :work_creations, dependent: :restrict_with_exception
   has_many :aliases, through: :work_creations
   has_many :access_controls, as: :resource, dependent: :destroy
+  has_many :work_versions, dependent: :destroy
 end
