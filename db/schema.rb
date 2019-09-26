@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_25_022305) do
+ActiveRecord::Schema.define(version: 2019_09_26_150908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,15 +84,15 @@ ActiveRecord::Schema.define(version: 2019_09_25_022305) do
 
   create_table "work_versions", force: :cascade do |t|
     t.bigint "work_id"
-    t.string "title"
+    t.string "version_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "aasm_state"
+    t.jsonb "metadata"
     t.index ["work_id"], name: "index_work_versions_on_work_id"
   end
 
   create_table "works", force: :cascade do |t|
-    t.jsonb "metadata"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "depositor_id"

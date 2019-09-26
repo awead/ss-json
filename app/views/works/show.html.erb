@@ -1,79 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @work.title %>
-</p>
+<h1>Versions for work</h1>
 
-<p>
-  <strong>Subtitle:</strong>
-  <%= @work.subtitle %>
-</p>
+<%= render @work.work_versions %>
 
-<p>
-  <strong>Keywords:</strong>
-  <%= @work.keywords.join(', ') %>
-</p>
-
-<p>
-  <strong>Rights:</strong>
-  <%= @work.rights %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @work.description %>
-</p>
-
-<p>
-  <strong>Resource type:</strong>
-  <%= @work.resource_type %>
-</p>
-
-<p>
-  <strong>Contributor:</strong>
-  <%= @work.contributor %>
-</p>
-
-<p>
-  <strong>Publisher:</strong>
-  <%= @work.publisher %>
-</p>
-
-<p>
-  <strong>Published date:</strong>
-  <%= @work.published_date %>
-</p>
-
-<p>
-  <strong>Subject:</strong>
-  <%= @work.subject %>
-</p>
-
-<p>
-  <strong>Language:</strong>
-  <%= @work.language %>
-</p>
-
-<p>
-  <strong>Identifier:</strong>
-  <%= @work.identifier %>
-</p>
-
-<p>
-  <strong>Based near:</strong>
-  <%= @work.based_near %>
-</p>
-
-<p>
-  <strong>Related url:</strong>
-  <%= @work.related_url %>
-</p>
-
-<p>
-  <strong>Source:</strong>
-  <%= @work.source %>
-</p>
-
-<%= link_to 'Edit', edit_work_path(@work) %> |
-<%= link_to 'Back', works_path %>
+<%= link_to 'New Work', new_work_path %> |
+<%= link_to 'New Version' %> |
+<%= link_to 'All My Works', works_path %>

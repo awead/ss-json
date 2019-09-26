@@ -1,55 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Works</h1>
+<h1>Your Current Works</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Subtitle</th>
-      <th>Keywords</th>
-      <th>Rights</th>
-      <th>Description</th>
-      <th>Resource type</th>
-      <th>Contributor</th>
-      <th>Publisher</th>
-      <th>Published date</th>
-      <th>Subject</th>
-      <th>Language</th>
-      <th>Identifier</th>
-      <th>Based near</th>
-      <th>Related url</th>
-      <th>Source</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @works.each do |work| %>
-      <tr>
-        <td><%= work.title %></td>
-        <td><%= work.subtitle %></td>
-        <td><%= work.keywords.join(', ') %></td>
-        <td><%= work.rights %></td>
-        <td><%= work.description %></td>
-        <td><%= work.resource_type %></td>
-        <td><%= work.contributor %></td>
-        <td><%= work.publisher %></td>
-        <td><%= work.published_date %></td>
-        <td><%= work.subject %></td>
-        <td><%= work.language %></td>
-        <td><%= work.identifier %></td>
-        <td><%= work.based_near %></td>
-        <td><%= work.related_url %></td>
-        <td><%= work.source %></td>
-        <td><%= link_to 'Show', work %></td>
-        <td><%= link_to 'Edit', edit_work_path(work) %></td>
-        <td><%= link_to 'Destroy', work, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<%= render @current_user.works %>
 
 <%= link_to 'New Work', new_work_path %>
