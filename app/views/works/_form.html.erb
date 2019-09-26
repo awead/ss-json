@@ -11,9 +11,11 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <div class="input-group">
+      <%= form.text_field :title, class: 'form-control' %>
+    </div>
   </div>
 
   <div class="field">
@@ -21,9 +23,13 @@
     <%= form.text_field :subtitle %>
   </div>
 
-  <div class="field">
+  <div class="form-group" data-controller="fields">
     <%= form.label :keywords %>
-    <%= form.text_field :keywords, multiple: true %>
+    <% work.keywords.each do |keyword| %>
+      <div class="input-group">
+        <%= form.text_field :keywords, multiple: true, value: keyword, class: "form-control" %>
+      </div>
+    <% end %>
   </div>
 
   <div class="field">

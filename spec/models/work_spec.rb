@@ -30,4 +30,10 @@ RSpec.describe Work, type: :model do
     it { is_expected.to have_many(:aliases).through(:work_creations) }
     it { is_expected.to have_many(:work_versions) }
   end
+
+  describe 'keywords=' do
+    subject { described_class.new(keywords: ['', 'thing']) }
+
+    its(:keywords) { is_expected.to contain_exactly('thing') }
+  end
 end
