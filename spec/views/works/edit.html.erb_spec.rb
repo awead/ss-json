@@ -7,7 +7,7 @@ RSpec.describe 'works/edit', type: :view do
     @work = assign(:work, Work.create!(
                             title: 'MyString',
                             subtitle: 'MyString',
-                            keywords: 'MyString',
+                            keywords: ['MyString'],
                             rights: 'MyString',
                             description: 'MyText',
                             resource_type: 'MyString',

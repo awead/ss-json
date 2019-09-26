@@ -70,7 +70,7 @@ class WorksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def work_params
-      params
+      returned_params = params
         .require(:work)
         .permit(
           :title,
@@ -90,6 +90,8 @@ class WorksController < ApplicationController
           :source,
           :depositor
         )
+      returned_params[:keywords] = returned_params.fetch(:keywords, []).reject(&:blank?)
+      returned_params
     end
 
     def current_user
