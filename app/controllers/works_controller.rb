@@ -6,7 +6,7 @@ class WorksController < ApplicationController
   # GET /works
   # GET /works.json
   def index
-    @works = Work.all
+    @current_user = current_user
   end
 
   # GET /works/1
@@ -70,28 +70,28 @@ class WorksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def work_params
-      returned_params = params
+      params
         .require(:work)
         .permit(
-          :title,
-          :subtitle,
-          { keywords: [] },
-          :rights,
-          :description,
-          :resource_type,
-          :contributor,
-          :publisher,
-          :published_date,
-          :subject,
-          :language,
-          :identifier,
-          :based_near,
-          :related_url,
-          :source,
-          :depositor
+          work_versions_attributes: [
+            :title,
+            :subtitle,
+            { keywords: [] },
+            :rights,
+            :description,
+            :resource_type,
+            :contributor,
+            :publisher,
+            :published_date,
+            :subject,
+            :language,
+            :identifier,
+            :based_near,
+            :related_url,
+            :source,
+            :depositor
+          ]
         )
-      returned_params[:keywords] = returned_params.fetch(:keywords, []).reject(&:blank?)
-      returned_params
     end
 
     def current_user

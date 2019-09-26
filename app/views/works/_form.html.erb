@@ -11,86 +11,9 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= form.label :title %>
-    <div class="input-group">
-      <%= form.text_field :title, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="field">
-    <%= form.label :subtitle %>
-    <%= form.text_field :subtitle %>
-  </div>
-
-  <div class="form-group" data-controller="fields">
-    <%= form.label :keywords %>
-    <% work.keywords.each do |keyword| %>
-      <div class="input-group">
-        <%= form.text_field :keywords, multiple: true, value: keyword, class: "form-control" %>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= form.label :rights %>
-    <%= form.text_field :rights %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :resource_type %>
-    <%= form.text_field :resource_type %>
-  </div>
-
-  <div class="field">
-    <%= form.label :contributor %>
-    <%= form.text_field :contributor %>
-  </div>
-
-  <div class="field">
-    <%= form.label :publisher %>
-    <%= form.text_field :publisher %>
-  </div>
-
-  <div class="field">
-    <%= form.label :published_date %>
-    <%= form.text_field :published_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :subject %>
-    <%= form.text_field :subject %>
-  </div>
-
-  <div class="field">
-    <%= form.label :language %>
-    <%= form.text_field :language %>
-  </div>
-
-  <div class="field">
-    <%= form.label :identifier %>
-    <%= form.text_field :identifier %>
-  </div>
-
-  <div class="field">
-    <%= form.label :based_near %>
-    <%= form.text_field :based_near %>
-  </div>
-
-  <div class="field">
-    <%= form.label :related_url %>
-    <%= form.text_field :related_url %>
-  </div>
-
-  <div class="field">
-    <%= form.label :source %>
-    <%= form.text_field :source %>
-  </div>
+  <%= form.fields_for(:work_versions, work.work_versions.first) do |work_versions_form| %>
+    <%= render partial: 'work_versions/form_fields', locals: { form: work_versions_form } %>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>
