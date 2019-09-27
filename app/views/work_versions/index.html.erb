@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+
+<h1>All Versions</h1>
+
+<%= render @work.work_versions %>
+
+<%= link_to 'Back', work_path(@work) %> |
+<%= link_to 'New Version', new_work_version_path(@work) %>

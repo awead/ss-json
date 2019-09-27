@@ -1,0 +1,8 @@
+<h1>Editing Work Version</h1>
+
+<%= form_with(model: @work_version, url: work_version_path(@work, @work_version), local: true) do |form| %>
+  <%= render 'form', work_version: @work_version, form: form %>
+<% end %>
+
+<%= link_to 'Show', work_version_path(@work, @work_version) %> |
+<%= link_to 'Back', work_versions_path %>
