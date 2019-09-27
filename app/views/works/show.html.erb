@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Versions for work</h1>
+<h1>Latest Version</h1>
 
-<%= render @work.work_versions %>
+<%= render partial: 'work_versions/show_fields', locals: { work_version: @work.work_versions.last } %>
 
-<%= link_to 'New Work', new_work_path %> |
-<%= link_to 'New Version' %> |
-<%= link_to 'All My Works', works_path %>
+<%= link_to 'Back', works_path %> |
+<%= link_to 'New Version', new_work_version_path(@work) %> |
+<%= link_to 'All Versions', work_versions_path(@work) %>

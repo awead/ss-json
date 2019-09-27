@@ -2,10 +2,12 @@
 <div class="card">
   <h5 class="card-header"><%= work_version.version_name || "Version #{work_version_iteration.index + 1}"  %></h5>
   <div class="card-body">
-    <h5 class="card-title"><%= work_version.title %></h5>
+    <h5 class="card-title">
+      <%= work_version.title %><span class="badge badge-primary"><%= work_version.aasm_state %></span>
+    </h5>
     <p class="card-text"><%= work_version.description %></p>
-    <span class="badge badge-primary"><%= work_version.aasm_state %></span>
-    <%# link_to 'Destroy', work_version, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Details', work_version_path(@work, work_version) %> |
+    <%= link_to 'Edit', edit_work_version_path(@work, work_version) %>
 
   </div>
 </div>
