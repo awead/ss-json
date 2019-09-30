@@ -2,6 +2,6 @@
 
 Rails.application.routes.draw do
   resources :works do
-    resources :versions, controller: :work_versions
+    resources :versions, controller: :work_versions # ,  shallow: true ???
   end
 end
