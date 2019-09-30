@@ -24,8 +24,8 @@ class WorkVersion < ApplicationRecord
   end
 
   belongs_to :work, inverse_of: :versions
-  has_many :version_memberships, dependent: :destroy
-  has_many :file_resources, through: :version_memberships
+  has_many :file_version_memberships, dependent: :destroy
+  has_many :file_resources, through: :file_version_memberships
 
   jsonb_accessor :metadata,
                  title: :string,

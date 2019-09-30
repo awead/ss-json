@@ -28,8 +28,8 @@ RSpec.describe WorkVersion, type: :model do
 
   describe 'associations' do
     it { is_expected.to belong_to(:work) }
-    it { is_expected.to have_many(:version_memberships) }
-    it { is_expected.to have_many(:file_resources).through(:version_memberships) }
+    it { is_expected.to have_many(:file_version_memberships) }
+    it { is_expected.to have_many(:file_resources).through(:file_version_memberships) }
   end
 
   describe 'states' do
