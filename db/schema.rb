@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_26_150908) do
+ActiveRecord::Schema.define(version: 2019_09_30_175342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(version: 2019_09_26_150908) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "file_version_memberships", force: :cascade do |t|
+    t.bigint "work_version_id"
+    t.bigint "file_resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["file_resource_id"], name: "index_file_version_memberships_on_file_resource_id"
+    t.index ["work_version_id"], name: "index_file_version_memberships_on_work_version_id"
+  end
+
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -62,15 +71,6 @@ ActiveRecord::Schema.define(version: 2019_09_26_150908) do
     t.string "access_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "version_memberships", force: :cascade do |t|
-    t.bigint "work_version_id"
-    t.bigint "file_resource_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["file_resource_id"], name: "index_version_memberships_on_file_resource_id"
-    t.index ["work_version_id"], name: "index_version_memberships_on_work_version_id"
   end
 
   create_table "work_creations", force: :cascade do |t|
@@ -100,8 +100,8 @@ ActiveRecord::Schema.define(version: 2019_09_26_150908) do
   end
 
   add_foreign_key "aliases", "creators"
-  add_foreign_key "version_memberships", "file_resources"
-  add_foreign_key "version_memberships", "work_versions"
+  add_foreign_key "file_version_memberships", "file_resources"
+  add_foreign_key "file_version_memberships", "work_versions"
   add_foreign_key "work_creations", "aliases"
   add_foreign_key "work_creations", "works"
   add_foreign_key "work_versions", "works"

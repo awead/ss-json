@@ -8,7 +8,7 @@ RSpec.describe FileResource, type: :model do
   end
 
   describe 'associations' do
-    it { is_expected.to have_many(:version_memberships) }
-    it { is_expected.to have_many(:work_versions).through(:version_memberships) }
+    it { is_expected.to have_many(:file_version_memberships) }
+    it { is_expected.to have_many(:work_versions).through(:file_version_memberships) }
   end
 end
