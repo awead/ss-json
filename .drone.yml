@@ -30,6 +30,7 @@ steps:
 
 - name: rspec
   image: harbor.dsrd.libraries.psu.edu/library/ss-json:ci
+  user: root
   environment:
     RAILS_ENV: test
     POSTGRES_USER: ssjson
