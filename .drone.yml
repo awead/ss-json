@@ -56,7 +56,7 @@ steps:
       - tag
   commands:
     - git clone https://github.com/psu-stewardship/ss-json-config.git
-    - cd ss-shrine-config
+    - cd ss-json-config
     - ./generate_application.sh
 
 - name: update ArgoCD (qa)
@@ -69,7 +69,7 @@ steps:
       - tag
   commands:
     - git clone https://github.com/psu-stewardship/ss-json-config.git
-    - cd ss-shrine-config
+    - cd ss-json-config
     - ./generate_application.sh
 
 - name: update ArgoCD (dev)
@@ -87,8 +87,21 @@ steps:
       - tag
   commands:
     - git clone https://github.com/psu-stewardship/ss-json-config.git
-    - cd ss-shrine-config
+    - cd ss-json-config
     - ./generate_application.sh
+
+- name: Sync the ArgoCD application
+  image: dosowisko/curl
+  environment:
+    ARGOCD_AUTH_TOKEN:
+      from_secret: ARGOCD_AUTH_TOKEN
+    ARGOCD_SERVER:
+      from_secret: ARGOCD_SERVER
+  commands:
+  - curl -ksSL -o argocd https://argocd.dsrd.libraries.psu.edu/download/argocd-linux-amd64
+  - chmod +x argocd
+  - ./argocd --insecure app sync ss-json-apps
+  - ./argocd --insecure app wait ss-json-apps
 
 services:
 - name: postgres
