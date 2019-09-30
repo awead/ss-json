@@ -4,26 +4,18 @@ class WorkVersionsController < ApplicationController
   before_action :set_work_version, only: [:show, :edit, :update, :destroy]
   before_action :set_work
 
-  # GET /work_versions
-  # GET /work_versions.json
   def index; end
 
-  # GET /work_versions/1
-  # GET /work_versions/1.json
   def show; end
 
-  # GET /work_versions/new
   def new
-    @work_version = @work.work_versions.build(metadata: @work.work_versions.last.metadata)
+    @work_version = @work.versions.build(metadata: @work.versions.last.metadata)
   end
 
-  # GET /work_versions/1/edit
   def edit; end
 
-  # POST /work_versions
-  # POST /work_versions.json
   def create
-    @work_version = @work.work_versions.build(work_version_params)
+    @work_version = @work.versions.build(work_version_params)
 
     respond_to do |format|
       if @work_version.save
@@ -38,8 +30,6 @@ class WorkVersionsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /work_versions/1
-  # PATCH/PUT /work_versions/1.json
   def update
     respond_to do |format|
       if @work_version.update(work_version_params)
@@ -54,19 +44,16 @@ class WorkVersionsController < ApplicationController
     end
   end
 
-  # DELETE /work_versions/1
-  # DELETE /work_versions/1.json
   def destroy
     @work_version.destroy
     respond_to do |format|
-      format.html { redirect_to work_versions_url, notice: 'Work version was successfully destroyed.' }
+      format.html { redirect_to versions_url, notice: 'Work version was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_work_version
       @work_version = WorkVersion.find(params[:id])
     end
@@ -75,7 +62,6 @@ class WorkVersionsController < ApplicationController
       @work = Work.find(params[:work_id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def work_version_params
       params
         .require(:work_version)

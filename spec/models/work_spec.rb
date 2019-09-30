@@ -13,19 +13,19 @@ RSpec.describe Work, type: :model do
     it { is_expected.to belong_to(:depositor).class_name('User').with_foreign_key(:depositor_id) }
     it { is_expected.to have_many(:work_creations) }
     it { is_expected.to have_many(:aliases).through(:work_creations) }
-    it { is_expected.to have_many(:work_versions) }
-    it { is_expected.to accept_nested_attributes_for(:work_versions) }
+    it { is_expected.to have_many(:versions) }
+    it { is_expected.to accept_nested_attributes_for(:versions) }
   end
 
   describe 'initialize' do
     it 'initializes a work version too' do
-      expect(described_class.new.work_versions).not_to be_empty
+      expect(described_class.new.versions).not_to be_empty
     end
 
     it 'accepts initial work versions' do
-      work_versions = [WorkVersion.new]
-      new_work = described_class.new(work_versions: work_versions)
-      expect(new_work.work_versions).to match_array(work_versions)
+      versions = [WorkVersion.new]
+      new_work = described_class.new(versions: versions)
+      expect(new_work.versions).to match_array(versions)
     end
   end
 end

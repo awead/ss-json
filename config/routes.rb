@@ -2,6 +2,6 @@
 
 Rails.application.routes.draw do
   resources :works do
-    resources :work_versions, as: :versions, path: :versions
+    resources :versions, controller: :work_versions
   end
 end

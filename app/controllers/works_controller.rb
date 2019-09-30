@@ -73,7 +73,7 @@ class WorksController < ApplicationController
       params
         .require(:work)
         .permit(
-          work_versions_attributes: [
+          versions_attributes: [
             :title,
             :subtitle,
             { keywords: [] },

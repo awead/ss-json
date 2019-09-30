@@ -2,7 +2,7 @@
 
 <h1>Latest Version</h1>
 
-<%= render partial: 'work_versions/show_fields', locals: { work_version: @work.work_versions.last } %>
+<%= render partial: 'work_versions/show_fields', locals: { work_version: @work.versions.last } %>
 
 <%= link_to 'Back', works_path %> |
 <%= link_to 'New Version', new_work_version_path(@work) %> |

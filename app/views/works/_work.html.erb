@@ -1,6 +1,6 @@
-<% latest_version = work.work_versions.last %>
+<% latest_version = work.versions.last %>
 <div class="card">
-  <h5 class="card-header"><%= "Latest version: #{work.work_versions.count}" %></h5>
+  <h5 class="card-header"><%= "Latest version: #{work.versions.count}" %></h5>
   <div class="card-body">
     <h5 class="card-title">
       <%= latest_version.title || "No Title" %>

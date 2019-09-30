@@ -3,11 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe 'work_versions/index', type: :view do
+  let(:work) { User.create.works.create }
+
   before do
-    assign(:work_versions, [
-             WorkVersion.create!,
-             WorkVersion.create!
-           ])
+    work.versions.create
+    work.versions.create
+    assign(:work, work)
   end
 
   it 'renders a list of work_versions' do

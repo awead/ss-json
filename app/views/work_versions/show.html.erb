@@ -1,4 +1,4 @@
-<h1>Version <%= params[:id] %></h1>
+<h1>Version <%= @work.versions.index(@work_version) + 1 %></h1>
 
 <%= render partial: 'show_fields', locals: { work_version: @work_version } %>
 

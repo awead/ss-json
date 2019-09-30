@@ -23,7 +23,7 @@ class WorkVersion < ApplicationRecord
     end
   end
 
-  belongs_to :work
+  belongs_to :work, inverse_of: :versions
   has_many :version_memberships, dependent: :destroy
   has_many :file_resources, through: :version_memberships
 
