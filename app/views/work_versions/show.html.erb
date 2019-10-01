@@ -3,4 +3,5 @@
 <%= render partial: 'show_fields', locals: { work_version: @work_version } %>
 
 <%= link_to 'Back', work_versions_path(@work) %> |
-<%= link_to 'Edit', edit_work_version_path(@work, @work_version) %>
+<%= link_to 'Edit', edit_work_version_path(@work, @work_version) %> |
+<%= link_to 'File Listing', work_version_file_list_path(@work, @work_version) %>
