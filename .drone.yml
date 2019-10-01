@@ -74,6 +74,9 @@ steps:
   image: harbor.dsrd.libraries.psu.edu/public/drone-utils:latest
   environment:
     CONFIG_ENV: dev
+    ARGOCD_SERVER: argocd.dsrd.libraries.psu.edu
+    ARGOCD_AUTH_TOKEN:
+      from_secret: ARGOCD_AUTH_TOKEN
   when:
     branch:
       include:
