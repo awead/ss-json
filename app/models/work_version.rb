@@ -26,6 +26,7 @@ class WorkVersion < ApplicationRecord
   belongs_to :work, inverse_of: :versions
   has_many :file_version_memberships, dependent: :destroy
   has_many :file_resources, through: :file_version_memberships
+  accepts_nested_attributes_for :file_resources
 
   jsonb_accessor :metadata,
                  title: :string,

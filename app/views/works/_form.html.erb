@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <%= form.fields_for(:work_versions, work.work_versions.first) do |work_versions_form| %>
+  <%= form.fields_for(:versions, work.versions.first) do |work_versions_form| %>
     <%= render partial: 'work_versions/form_fields', locals: { form: work_versions_form } %>
   <% end %>
 
