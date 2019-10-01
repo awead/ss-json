@@ -5,7 +5,9 @@ class FileListsController < ApplicationController
 
   def edit; end
 
-  def update; end
+  def update
+    redirect_to work_version_file_list_path
+  end
 
   private
 

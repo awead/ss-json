@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  mount Shrine.upload_endpoint(:cache) => '/upload'
   resources :works do
     resources :versions, controller: :work_versions do # ,  shallow: true ???
       get 'file_list', to: 'file_lists#edit'
