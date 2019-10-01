@@ -75,6 +75,8 @@ steps:
   environment:
     CONFIG_ENV: dev
     ARGOCD_SERVER: argocd.dsrd.libraries.psu.edu
+    SLACK_WEBHOOK_URL:
+      from_secret: SLACK_WEBHOOK_URL
     ARGOCD_AUTH_TOKEN:
       from_secret: ARGOCD_AUTH_TOKEN
   when:
@@ -90,8 +92,6 @@ steps:
     - git clone https://github.com/psu-stewardship/ss-json-config.git
     - cd ss-json-config
     - ./generate_application.sh
-    - argocd --insecure app sync ss-json-apps
-    - argocd --insecure app wait ss-json-apps
 
 services:
 - name: postgres
