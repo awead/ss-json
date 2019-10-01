@@ -29,7 +29,7 @@ export default class extends Controller {
       var uploadedFileData = JSON.stringify(success.response.body)
       var input = document.createElement("input")
       input.setAttribute("type", "hidden")
-      input.setAttribute("name", "album[posts_attributes][][file]")
+      input.setAttribute("name", "work_version[file_resources_attributes][][file]")
       input.setAttribute("value", uploadedFileData)
 
       return input

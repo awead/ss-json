@@ -6,7 +6,11 @@ class FileListsController < ApplicationController
   def edit; end
 
   def update
-    redirect_to work_version_file_list_path
+    if @work_version.update(work_version_params)
+      redirect_to work_version_file_list_path
+    else
+      render :edit
+    end
   end
 
   private
@@ -14,4 +18,15 @@ class FileListsController < ApplicationController
     def load_work_version
       @work_version = WorkVersion.find(params[:version_id])
     end
+
+    def work_version_params
+      params
+      .require(:work_version)
+      .permit(
+        file_resources_attributes: [
+          :file
+        ]
+      )
+    end
+      
 end
