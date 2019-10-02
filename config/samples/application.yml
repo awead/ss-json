@@ -1,0 +1,7 @@
+# POSTGRES_USER: "[change this to your current username]"
+
+development:
+  POSTGRES_DB: "ss-json_development"
+
+test:
+  POSTGRES_DB: "ss-json_test"
