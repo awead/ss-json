@@ -11,10 +11,21 @@ export default class extends Controller {
   }
 
   initialize_uppy() {
+    let blacklist = JSON.parse( this.data.get('blacklist') || '[]' )
+
     var uppy = Uppy({
       id: 'someid',
       autoProceed: true,
       allowMultipleUploads: true,
+      onBeforeFileAdded: (currentFile, files) => {
+        let filename = currentFile.name
+        let isBlacklisted = blacklist.includes(filename)
+
+        if ( isBlacklisted ) {
+          uppy.info(`Error: ${filename} already exists in this version`, 'error', 10000)
+          return false
+        }
+      }
     })
     .use(Dashboard, {
       id: 'dashboard',

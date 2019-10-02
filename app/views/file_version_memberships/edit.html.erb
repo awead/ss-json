@@ -5,6 +5,18 @@
       url: work_version_file_path(params[:work_id], params[:version_id], @file_version),
       local: true) do |form| %>
 
+  <% if form.object.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(form.object.errors.count, "error") %> prohibited this file from being saved:</h2>
+
+      <ul>
+        <% form.object.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="form-group">
     <%= form.label :title %>
     <div class="input-group">
@@ -13,5 +25,6 @@
   </div>
 
   <%= form.submit "Update", class: 'btn btn-primary' %>
+  <%= link_to "Cancel", work_version_file_list_path, class: 'btn btn-link' %>
 
 <% end %>

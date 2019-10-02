@@ -1,6 +1,6 @@
 <%= form_with(model: version, url: work_version_file_list_path, local: true) do |form| %>
 
-  <div data-controller="uppy">
+  <div data-controller="uppy" data-uppy-blacklist="<%= version.file_version_memberships.map(&:title).to_json %>">
   </div>
 
   <div class="upload-submit">
