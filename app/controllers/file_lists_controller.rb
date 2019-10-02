@@ -21,12 +21,11 @@ class FileListsController < ApplicationController
 
     def work_version_params
       params
-      .require(:work_version)
-      .permit(
-        file_resources_attributes: [
-          :file
-        ]
-      )
+        .require(:work_version)
+        .permit(
+          file_resources_attributes: [
+            :file
+          ]
+        )
     end
-      
 end

@@ -5,4 +5,4 @@
 <%= render @work.versions %>
 
 <%= link_to 'Back', work_path(@work) %> |
-<%= link_to 'New Version', new_work_version_path(@work) %>
+<%= link_to 'New Version', work_versions_path(@work), method: :post %>

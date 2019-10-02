@@ -8,14 +8,12 @@ class WorkVersionsController < ApplicationController
 
   def show; end
 
-  def new
-    @work_version = @work.versions.build(metadata: @work.versions.last.metadata)
-  end
-
   def edit; end
 
   def create
-    @work_version = @work.versions.build(work_version_params)
+    # @todo scope to return latest published version
+    # Additional logic: validate does a draft version currently exist?
+    @work_version = BuildNewVersion.call(@work.versions.last)
 
     respond_to do |format|
       if @work_version.save

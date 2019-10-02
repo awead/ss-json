@@ -27,6 +27,7 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'database_cleaner'
   gem 'flog'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
@@ -39,7 +40,6 @@ end
 group :test do
   gem 'capybara'
   gem 'coveralls', require: false
-  gem 'database_cleaner'
   gem 'launchy'
   gem 'rspec'
   gem 'rspec-its'
