@@ -13,7 +13,10 @@ class FileVersionMembershipsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { render :edit }
+        format.html do
+          flash[:alert] = @file_version.errors.full_messages
+          render :edit
+        end
         format.json { render json: @file_version.errors, status: :unprocessable_entity }
       end
     end
