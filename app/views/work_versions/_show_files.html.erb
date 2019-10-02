@@ -4,11 +4,11 @@
       <tr><th>Name</th><th>Size</th><th>Mime Type</th></tr>
     </thead>
     <tbody>
-      <% @work_version.file_resources.each do |resource| %>
+      <% @work_version.file_version_memberships.includes(:file_resource).each do |file| %>
       <tr>
-        <td><%= resource.file.original_filename %></td>
-        <td><%= number_to_human_size resource.file.size %></td>
-        <td><%= resource.file.mime_type %></td>
+        <td><%= file.title %></td>
+        <td><%= number_to_human_size file.size %></td>
+        <td><%= file.mime_type %></td>
       </tr>
       <% end %>
     </tbody>

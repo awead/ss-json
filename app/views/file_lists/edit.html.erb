@@ -9,11 +9,10 @@
       <%# TODO move to controller? %>
       <% file_memberships =  @work_version.file_version_memberships.includes(:file_resource) %>
       <% file_memberships.each do |membership| %>
-        <% resource = membership.file_resource %>
         <tr id="<%= dom_id membership %>">
           <td><%= membership.title %></td>
-          <td><%= number_to_human_size resource.file.size %></td>
-          <td><%= resource.file.mime_type %></td>
+          <td><%= number_to_human_size membership.size %></td>
+          <td><%= membership.mime_type %></td>
           <td>
             <%= link_to 'Rename', edit_work_version_file_path(params[:work_id], params[:version_id], membership.id) %> |
             <%= link_to 'Delete',
