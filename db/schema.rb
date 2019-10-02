@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_30_175342) do
+ActiveRecord::Schema.define(version: 2019_10_02_142248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2019_09_30_175342) do
     t.bigint "file_resource_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
     t.index ["file_resource_id"], name: "index_file_version_memberships_on_file_resource_id"
     t.index ["work_version_id"], name: "index_file_version_memberships_on_work_version_id"
   end

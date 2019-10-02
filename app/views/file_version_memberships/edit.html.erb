@@ -1,0 +1,17 @@
+<h1>Editing</h1>
+
+<%= form_with(
+      model: @file_version,
+      url: work_version_file_path(params[:work_id], params[:version_id], @file_version),
+      local: true) do |form| %>
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <div class="input-group">
+      <%= form.text_field :title, class: 'form-control' %>
+    </div>
+  </div>
+
+  <%= form.submit "Update", class: 'btn btn-primary' %>
+
+<% end %>

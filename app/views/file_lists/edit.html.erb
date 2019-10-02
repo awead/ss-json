@@ -11,11 +11,11 @@
       <% file_memberships.each do |membership| %>
         <% resource = membership.file_resource %>
         <tr id="<%= dom_id membership %>">
-          <td><%= resource.file.original_filename %></td>
+          <td><%= membership.title %></td>
           <td><%= number_to_human_size resource.file.size %></td>
           <td><%= resource.file.mime_type %></td>
           <td>
-            <%= link_to 'Edit' %> |
+            <%= link_to 'Rename', edit_work_version_file_path(params[:work_id], params[:version_id], membership.id) %> |
             <%= link_to 'Delete',
                 work_version_file_path(params[:work_id], params[:version_id], membership.id),
                 method: :delete, data: { confirm: 'Are you sure?' } %>
