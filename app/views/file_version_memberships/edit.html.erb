@@ -1,21 +1,20 @@
 <h1>Editing</h1>
 
+<% if flash.alert %>
+  <div class="alert alert-danger" role="alert">
+    <h2>Errors</h2>
+    <ul>
+      <% flash.alert.each do |alert| %>
+        <li><%= alert %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_with(
       model: @file_version,
       url: work_version_file_path(params[:work_id], params[:version_id], @file_version),
       local: true) do |form| %>
-
-  <% if form.object.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(form.object.errors.count, "error") %> prohibited this file from being saved:</h2>
-
-      <ul>
-        <% form.object.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="form-group">
     <%= form.label :title %>

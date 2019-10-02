@@ -12,6 +12,8 @@ class FileVersionMembership < ApplicationRecord
               scope: :work_version_id
             }
 
+  validate :filename_extentions_cannot_change
+
   delegate :size, :mime_type, :original_filename, to: :uploader
 
   private
@@ -22,5 +24,11 @@ class FileVersionMembership < ApplicationRecord
 
     def initialize_title
       self.title ||= uploader&.original_filename
+    end
+
+    def filename_extentions_cannot_change
+      return if title.blank? || File.extname(title) == File.extname(original_filename)
+
+      errors[:title] << "does not have the same filename extension as #{original_filename}"
     end
 end
