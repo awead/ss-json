@@ -17,13 +17,17 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  database: <%= ENV.fetch("POSTGRES_DB", "ss-json") %>
+  username: <%= ENV.fetch("POSTGRES_USER", "ss-json") %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD", nil) %>
+  host: <%= ENV.fetch("POSTGRES_HOST", nil) %>
+
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: ss-json_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -80,6 +84,3 @@ test:
 #
 production:
   <<: *default
-  database: ss-json_production
-  username: ss-json
-  password: <%= ENV['SS-JSON_DATABASE_PASSWORD'] %>
