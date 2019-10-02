@@ -1,6 +1,7 @@
 <h1>Version <%= @work.versions.index(@work_version) + 1 %></h1>
 
 <%= render partial: 'show_fields', locals: { work_version: @work_version } %>
+<%= render partial: 'show_files', locals: { work_version: @work_version } %>
 
 <%= link_to 'Back', work_versions_path(@work) %> |
 <%= link_to 'Edit', edit_work_version_path(@work, @work_version) %> |
