@@ -6,10 +6,14 @@ RSpec.describe BuildNewVersion, type: :model do
   let!(:user) { User.create }
   let!(:work) { user.works.create }
   let!(:previous_version) { work.versions.create(title: 'My Happy Version', aasm_state: 'published') }
+  let!(:file_resource) { FileResource.create!(file: File.open(file_path)) }
   let!(:file_path) { Pathname.new(fixture_path).join('image.png') }
 
   before do
-    previous_version.file_resources.create(file: File.open(file_path))
+    previous_version.file_version_memberships.create!(
+      file_resource: file_resource,
+      title: 'overridden-title.png'
+    )
   end
 
   describe '.call' do
@@ -22,16 +26,30 @@ RSpec.describe BuildNewVersion, type: :model do
     its(:work) { is_expected.to eq work }
 
     it 'retains the same file resources' do
-      expect(new_version.file_resources.length).to eq 1
-      new_version.file_resources.first.tap do |file_resource|
-        expect(file_resource).to be_persisted
-        expect(file_resource.id).to eq previous_version.file_resources.first.id
+      expect(new_version.file_version_memberships.length).to eq 1
+
+      new_version.file_version_memberships.first.tap do |membership|
+        expect(membership.title).to eq 'overridden-title.png'
+        expect(membership.file_resource).to eq file_resource
       end
     end
 
     it "doesn't change the database" do
       expect { new_version }.not_to change(WorkVersion, :count)
       expect { new_version }.not_to change(FileResource, :count)
+    end
+
+    context 'when persisting the new version' do
+      it 'returns a WorkVersion that persists as expected' do
+        expect {
+          new_version.save!
+        }.to change(WorkVersion, :count).by(1)
+          .and change(FileVersionMembership, :count).by(1)
+          .and change(FileResource, :count).by(0)
+
+        new_version.reload
+        expect(new_version.file_resources).to match_array [file_resource]
+      end
     end
   end
 end
