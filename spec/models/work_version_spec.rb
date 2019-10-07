@@ -46,4 +46,27 @@ RSpec.describe WorkVersion, type: :model do
 
     its(:keywords) { is_expected.to contain_exactly('thing') }
   end
+
+  describe 'validations' do
+    subject(:work_version) { described_class.new }
+
+    context 'when published' do
+      before { work_version.publish }
+
+      it { is_expected.to validate_presence_of(:title) }
+
+      it 'validates the presence files' do
+        work_version.file_resources = []
+        work_version.validate
+        expect(work_version.errors[:file_resources]).not_to be_empty
+        work_version.file_resources.build
+        work_version.validate
+        expect(work_version.errors[:file_resources]).to be_empty
+      end
+    end
+
+    context 'when in draft' do
+      it { is_expected.not_to validate_presence_of(:title) }
+    end
+  end
 end

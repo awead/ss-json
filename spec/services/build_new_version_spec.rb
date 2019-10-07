@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe BuildNewVersion, type: :model do
   let!(:user) { User.create }
   let!(:work) { user.works.create }
-  let!(:previous_version) { work.versions.create(title: 'My Happy Version', aasm_state: 'published') }
+  let!(:previous_version) { work.versions.create(title: 'My Happy Version') }
   let!(:file_resource) { FileResource.create!(file: File.open(file_path)) }
   let!(:file_path) { Pathname.new(fixture_path).join('image.png') }
 
@@ -14,6 +14,7 @@ RSpec.describe BuildNewVersion, type: :model do
       file_resource: file_resource,
       title: 'overridden-title.png'
     )
+    previous_version.publish!
   end
 
   describe '.call' do

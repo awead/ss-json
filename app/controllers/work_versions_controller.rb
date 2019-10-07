@@ -30,7 +30,9 @@ class WorkVersionsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @work_version.update(work_version_params)
+      @work_version.attributes = work_version_params
+      @work_version.publish if params.key?(:publish)
+      if @work_version.save
         format.html do
           redirect_to work_version_path(@work, @work_version), notice: 'Work version was successfully updated.'
         end

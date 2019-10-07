@@ -8,10 +8,7 @@ class WorkVersion < ApplicationRecord
     state :published, :withdrawn, :removed
 
     event :publish do
-      before do
-        # whatever we need to do...
-      end
-      transitions from: [:draft, :withdrawn], to: :published, guard: :valid_for_publication?
+      transitions from: [:draft, :withdrawn], to: :published
     end
 
     event :withdraw do
@@ -51,9 +48,8 @@ class WorkVersion < ApplicationRecord
     end
   end
 
-  def valid_for_publication?
-    true
-  end
+  validates :title, presence: true, if: :published?
+  validates :file_resources, presence: true, if: :published?
 
   private
 

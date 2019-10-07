@@ -13,5 +13,6 @@
 <%= render 'form_fields', form: form %>
 
 <div class="actions">
-  <%= form.submit %>
+  <%= form.submit "Save" %>
+  <%= form.button "Save and Publish", name: "publish" %>
 </div>
