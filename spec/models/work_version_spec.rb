@@ -50,6 +50,10 @@ RSpec.describe WorkVersion, type: :model do
   describe 'validations' do
     subject(:work_version) { described_class.new }
 
+    context 'when draft' do
+      it { is_expected.to validate_presence_of(:title) }
+    end
+
     context 'when published' do
       before { work_version.publish }
 
@@ -63,10 +67,6 @@ RSpec.describe WorkVersion, type: :model do
         work_version.validate
         expect(work_version.errors[:file_resources]).to be_empty
       end
-    end
-
-    context 'when in draft' do
-      it { is_expected.not_to validate_presence_of(:title) }
     end
   end
 end

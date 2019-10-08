@@ -12,8 +12,20 @@
   <% end %>
 
   <%= form.fields_for(:versions, work.versions.first) do |work_versions_form| %>
-    <%= render partial: 'work_versions/form_fields', locals: { form: work_versions_form } %>
+    <div class="form-group">
+      <%= work_versions_form.label :title %>
+      <div class="input-group">
+        <%= work_versions_form.text_field :title, class: 'form-control' %>
+      </div>
+    </div>
   <% end %>
+
+  <div class="form-group">
+    <%= form.label :work_type %>
+    <div class="input-group">
+      <%= form.select :work_type, Work::Types.options_for_select_box, class: 'form-control' %>
+    </div>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

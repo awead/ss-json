@@ -48,8 +48,12 @@ class WorkVersion < ApplicationRecord
     end
   end
 
-  validates :title, presence: true, if: :published?
-  validates :file_resources, presence: true, if: :published?
+  validates :title,
+            presence: true
+
+  validates :file_resources,
+            presence: true,
+            if: :published?
 
   private
 

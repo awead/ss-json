@@ -28,7 +28,10 @@ class WorksController < ApplicationController
 
     respond_to do |format|
       if @work.save
-        format.html { redirect_to @work, notice: 'Work was successfully created.' }
+        format.html do
+          redirect_to work_version_file_list_path(@work, @work.versions.last),
+                      notice: 'Work was successfully created.'
+        end
         format.json { render :show, status: :created, location: @work }
       else
         format.html { render :new }
@@ -73,23 +76,9 @@ class WorksController < ApplicationController
       params
         .require(:work)
         .permit(
+          :work_type,
           versions_attributes: [
-            :title,
-            :subtitle,
-            { keywords: [] },
-            :rights,
-            :description,
-            :resource_type,
-            :contributor,
-            :publisher,
-            :published_date,
-            :subject,
-            :language,
-            :identifier,
-            :based_near,
-            :related_url,
-            :source,
-            :depositor
+            :title
           ]
         )
     end
