@@ -3,8 +3,15 @@
 require 'rails_helper'
 
 RSpec.describe 'work_versions/new', type: :view do
+  let(:work) do
+    User.create.works.create(
+      work_type: Work::Types.all.first,
+      versions_attributes: [{ title: 'Sample Work' }]
+    )
+  end
+
   before do
-    @work = assign(:work, User.create.works.create)
+    @work = assign(:work, work)
     assign(:work_version, @work.versions.build)
   end
 

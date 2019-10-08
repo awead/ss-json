@@ -4,7 +4,12 @@ require 'rails_helper'
 
 RSpec.describe FileListsController, type: :controller do
   let(:valid_session) { {} }
-  let(:work_version) { User.create.works.create.versions.create }
+  let(:work_version) do
+    User.create.works.create(
+      work_type: Work::Types.all.first,
+      versions_attributes: [{ title: 'Sample Work' }]
+    ).versions.first
+  end
 
   describe '#edit' do
     it 'returns a success response' do

@@ -4,8 +4,11 @@ require 'rails_helper'
 
 RSpec.describe BuildNewVersion, type: :model do
   let!(:user) { User.create }
-  let!(:work) { user.works.create }
-  let!(:previous_version) { work.versions.create(title: 'My Happy Version') }
+  let!(:work) do
+    user.works.create(work_type: Work::Types.all.first, versions_attributes: [{ title: 'My Happy Version' }])
+  end
+
+  let!(:previous_version) { work.versions.first }
   let!(:file_resource) { FileResource.create!(file: File.open(file_path)) }
   let!(:file_path) { Pathname.new(fixture_path).join('image.png') }
 
