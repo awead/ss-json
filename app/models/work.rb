@@ -37,6 +37,14 @@ class Work < ApplicationRecord
     versions.last
   end
 
+  def latest_published_version
+    versions.published.last
+  end
+
+  def draft_version
+    versions.draft.last
+  end
+
   private
 
     def set_defaults

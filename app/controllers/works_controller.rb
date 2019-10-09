@@ -5,9 +5,7 @@ class WorksController < ApplicationController
 
   # GET /works
   # GET /works.json
-  def index
-    @current_user = current_user
-  end
+  def index; end
 
   # GET /works/1
   # GET /works/1.json
@@ -81,9 +79,5 @@ class WorksController < ApplicationController
             :title
           ]
         )
-    end
-
-    def current_user
-      User.all.first || User.create
     end
 end

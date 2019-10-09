@@ -6,5 +6,5 @@
 <%= render partial: 'work_versions/show_fields', locals: { work_version: @work.versions.last } %>
 
 <%= link_to 'Back', works_path %> |
-<%= link_to 'New Version', new_work_version_path(@work) %> |
+<%= link_to 'New Version', new_work_version_path(@work) if policy(@work).create_version? %> |
 <%= link_to 'All Versions', work_versions_path(@work) %>
