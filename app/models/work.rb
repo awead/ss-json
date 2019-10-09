@@ -33,6 +33,10 @@ class Work < ApplicationRecord
             presence: true,
             inclusion: { in: Types.all }
 
+  def latest_version
+    versions.last
+  end
+
   private
 
     def set_defaults

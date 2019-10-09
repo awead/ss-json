@@ -2,6 +2,7 @@
 
 <h1>Latest Version</h1>
 
+<span class="badge badge-primary"><%= @work.latest_version.aasm_state %></span>
 <%= render partial: 'work_versions/show_fields', locals: { work_version: @work.versions.last } %>
 
 <%= link_to 'Back', works_path %> |
