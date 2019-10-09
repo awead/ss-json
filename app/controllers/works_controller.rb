@@ -84,7 +84,7 @@ class WorksController < ApplicationController
         )
     end
 
-    def current_user
-      User.all.first || User.create
-    end
+    # def current_user
+    #   User.all.first || User.create
+    # end
 end
