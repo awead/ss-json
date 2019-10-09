@@ -1,8 +1,13 @@
-<h1>Version <%= @work.versions.index(@work_version) + 1 %></h1>
+<h1><%= @work_version.display_version_name %></h1>
 
-<%= render partial: 'show_fields', locals: { work_version: @work_version } %>
-<%= render partial: 'show_files', locals: { work_version: @work_version } %>
+<div class="row">
+  <div class="col-sm-8">
+    <%= work_version_badge @work.latest_version %>
+    <%= render partial: 'show_fields', locals: { work_version: @work_version } %>
+    <%= render partial: 'show_files', locals: { work_version: @work_version } %>
+  </div>
 
-<%= link_to 'Back', work_versions_path(@work) %> |
-<%= link_to 'Edit', edit_work_version_path(@work, @work_version) %> |
-<%= link_to 'File Listing', work_version_file_list_path(@work, @work_version) %>
+  <div class="col-sm-4">
+    <%= render 'works/versions_sidebar', work: @work, active: @work_version %>
+  </div>
+</div>

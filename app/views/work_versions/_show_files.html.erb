@@ -1,10 +1,10 @@
-<% if @work_version.file_resources.present? %>
+<% if work_version.file_resources.present? %>
   <table class="table table-striped">
     <thead>
       <tr><th>Name</th><th>Size</th><th>Mime Type</th></tr>
     </thead>
     <tbody>
-      <% @work_version.file_version_memberships.includes(:file_resource).each do |file| %>
+      <% work_version.file_version_memberships.includes(:file_resource).each do |file| %>
       <tr>
         <td><%= file.title %></td>
         <td><%= number_to_human_size file.size %></td>

@@ -96,7 +96,8 @@ class WorkVersionsController < ApplicationController
           :based_near,
           :related_url,
           :source,
-          :depositor_agreement
+          :depositor_agreement,
+          :version_name
         )
     end
 

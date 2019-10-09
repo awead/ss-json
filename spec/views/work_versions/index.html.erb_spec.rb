@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'work_versions/index', type: :view do
+RSpec.xdescribe 'work_versions/index', type: :view do
   let(:work) do
     User.create.works.create(
       work_type: Work::Types.all.first,

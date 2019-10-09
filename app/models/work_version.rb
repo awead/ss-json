@@ -59,6 +59,14 @@ class WorkVersion < ApplicationRecord
             acceptance: true,
             if: :published?
 
+  def display_version_name
+    "Version: #{version_name.presence || version_index + 1}"
+  end
+
+  def version_index
+    work.versions.order(created_at: :asc).to_enum.with_index.find { |version, _index| version == self }.last || 0
+  end
+
   private
 
     def strip_blanks_from_array(arr)
