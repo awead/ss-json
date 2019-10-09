@@ -55,6 +55,10 @@ class WorkVersion < ApplicationRecord
             presence: true,
             if: :published?
 
+  validates :depositor_agreement,
+            acceptance: true,
+            if: :published?
+
   private
 
     def strip_blanks_from_array(arr)

@@ -1,3 +1,17 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <%= link_to "Add Files", work_version_file_list_path(@work, @work_version) %>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Add Metadata</li>
+    <% if @work_version.may_publish? %>
+      <li class="breadcrumb-item">
+        <%= link_to "Publish", work_version_publish_path(@work, @work_version) %>
+      </li>
+    <% end %>
+  </ol>
+</nav>
+
 <h1>Editing Work Version</h1>
 
 <%= form_with(model: @work_version, url: work_version_path(@work, @work_version), local: true) do |form| %>

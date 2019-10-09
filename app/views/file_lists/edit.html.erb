@@ -1,3 +1,14 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Add Files</li>
+    <% if @work_version.file_resources.present? %>
+      <li class="breadcrumb-item">
+        <%= link_to "Add Metadata", edit_work_version_path(@work_version.work, @work_version) %>
+      </li>
+    <% end %>
+  </ol>
+</nav>
+
 <h1>File Listing</h1>
 
 <% if @work_version.file_resources.present? %>

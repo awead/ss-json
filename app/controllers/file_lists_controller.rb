@@ -7,7 +7,7 @@ class FileListsController < ApplicationController
 
   def update
     if @work_version.update(work_version_params)
-      redirect_to work_version_file_list_path
+      redirect_to edit_work_version_path(@work_version.work, @work_version)
     else
       render :edit
     end
