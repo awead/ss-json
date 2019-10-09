@@ -26,19 +26,19 @@ steps:
   - name: docker-sock
     path: /var/run/host.sock
 
-- name: rspec
-  image: harbor.dsrd.libraries.psu.edu/library/ss-json:ci
-  user: root
-  environment:
-    RAILS_ENV: test
-    POSTGRES_USER: ssjson
-    POSTGRES_DB: ssjson
-    POSTGRES_HOST: postgres
-    POSTGRES_PASSWORD: ssjson
-  commands:
-    - bundle exec rails db:create
-    - bundle exec rails db:migrate
-    - bundle exec rspec
+# - name: rspec
+#   image: harbor.dsrd.libraries.psu.edu/library/ss-json:ci
+#   user: root
+#   environment:
+#     RAILS_ENV: test
+#     POSTGRES_USER: ssjson
+#     POSTGRES_DB: ssjson
+#     POSTGRES_HOST: postgres
+#     POSTGRES_PASSWORD: ssjson
+#   commands:
+#     - bundle exec rails db:create
+#     - bundle exec rails db:migrate
+#     - bundle exec rspec
 
 - name: update ArgoCD (prod)
   image: alpine/git
