@@ -36,16 +36,17 @@ COPY package.json yarn.lock /app/
 RUN yarn
 RUN gem install bundler
 
-RUN bundle package --all
-RUN bundle install 
-
 RUN useradd -u 10000 app -d /app
+RUN chown -R app /app
+USER app
+
+RUN bundle install --deployment
+
 
 RUN chown -R app /app
 COPY --chown=app . /app
 
-USER app
 
-RUN RAILS_ENV=production SECRET_KEY_BASE=$(bundle exec rails secret) aws_bucket=bucket aws_access_key_id=key aws_secret_access_key=access aws_region=us-east-1 rails assets:precompile
+RUN RAILS_ENV=production SECRET_KEY_BASE=$(bundle exec rails secret) aws_bucket=bucket aws_access_key_id=key aws_secret_access_key=access aws_region=us-east-1 bundle exec rails assets:precompile
 
 CMD ["./entrypoint.sh"]

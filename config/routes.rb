@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'omniauth_callbacks'
   }
 
+  devise_scope :user do
+    get 'sign_in', :to => 'users/sessions#new', :as => :new_user_session
+  end
+
   mount Shrine.upload_endpoint(:cache) => '/upload'
   resources :works do
     resources :versions, controller: :work_versions do # ,  shallow: true ???

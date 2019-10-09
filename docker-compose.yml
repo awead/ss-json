@@ -1,17 +1,17 @@
-version: '3.2'
+version: '3.5'
 services:
   adminer:
     image: adminer
     restart: always
     ports:
     - "8080:8080"
-  redis:
-    image: redis:5.0.5
-    command: redis-server --requirepass redispassword
-    volumes:
-    - redis-data:/data
-    ports:
-    - "6379:6379"
+#   redis:
+#     image: redis:5.0.5
+#     command: redis-server --requirepass redispassword
+#     volumes:
+#     - redis-data:/data
+#     ports:
+#     - "6379:6379"
   # minio:
   #   command: '--compat server --address ":9001" /data'
   #   environment:
@@ -24,7 +24,7 @@ services:
   #   ports:
   #   # my vscode gobbles up port 9000
   #   - "9001:9001"
-  db:
+  dbjson:
     environment:
       POSTGRES_PASSWORD: ssjson
       POSTGRES_USER: ssjson
@@ -49,36 +49,17 @@ services:
   #   build: .
   #   command: >
   #     sh -c "bundle exec sidekiq"
-  # web:
+  # webjson:
   #   # env_file: s3.env
-  #   environment:
-  #     REDIS_HOST: redis
-  #     REDIS_PASSWORD: redispassword
-  #     RAILS_SERVE_STATIC_FILES: "true"
-  #     RAILS_ENV: development
-  #     RAILS_LOG_TO_STDOUT: "true"
-  #     POSTGRES_USER: ssjson
-  #     POSTGRES_HOST: db
-  #     POSTGRES_DB: ssjson
-  #     POSTGRES_PASSWORD: ssjson
-  #   build: .
-  #   command: >
-  #     sh -c "echo starting database migrations &&
-  #           yarn && 
-  #           rails db:migrate &&
-  #           echo starting rails &&
-  #           rails s -b 0.0.0.0"
-  #   volumes:
-  #     - type: bind
-  #       source: ./app
-  #       target: /app/app
-  #       consistency: cached
-  #   ports:
-  #   - "3000:3000"
-  #   depends_on:
-  #   - db
+  #   ttyj:
+    # - dbjson
 
 volumes:
   redis-data:
   minio:
   db-data:
+
+networks:
+  ss-json_default:
+  psu-authproxy_default:
+    external: true
