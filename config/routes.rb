@@ -11,5 +11,5 @@ Rails.application.routes.draw do
       resources :files, controller: :file_version_memberships
     end
   end
-  root 'works#new'
+  root 'works#index'
 end
