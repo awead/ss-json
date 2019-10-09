@@ -49,3 +49,7 @@ group :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'webdrivers'
 end
+
+gem "devise", "~> 4.7"
+
+gem "omniauth-oauth2", "~> 1.6"

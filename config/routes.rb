@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    omniauth_callbacks: 'omniauth_callbacks'
+  }
+
   mount Shrine.upload_endpoint(:cache) => '/upload'
   resources :works do
     resources :versions, controller: :work_versions do # ,  shallow: true ???

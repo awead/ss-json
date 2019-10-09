@@ -1,5 +1,10 @@
 version: '3.2'
 services:
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+    - "8080:8080"
   redis:
     image: redis:5.0.5
     command: redis-server --requirepass redispassword
@@ -44,34 +49,34 @@ services:
   #   build: .
   #   command: >
   #     sh -c "bundle exec sidekiq"
-  web:
-    # env_file: s3.env
-    environment:
-      REDIS_HOST: redis
-      REDIS_PASSWORD: redispassword
-      RAILS_SERVE_STATIC_FILES: "true"
-      RAILS_ENV: development
-      RAILS_LOG_TO_STDOUT: "true"
-      POSTGRES_USER: ssjson
-      POSTGRES_HOST: db
-      POSTGRES_DB: ssjson
-      POSTGRES_PASSWORD: ssjson
-    build: .
-    command: >
-      sh -c "echo starting database migrations &&
-            yarn && 
-            rails db:migrate &&
-            echo starting rails &&
-            rails s -b 0.0.0.0"
-    volumes:
-      - type: bind
-        source: ./app
-        target: /app/app
-        consistency: cached
-    ports:
-    - "3000:3000"
-    depends_on:
-    - db
+  # web:
+  #   # env_file: s3.env
+  #   environment:
+  #     REDIS_HOST: redis
+  #     REDIS_PASSWORD: redispassword
+  #     RAILS_SERVE_STATIC_FILES: "true"
+  #     RAILS_ENV: development
+  #     RAILS_LOG_TO_STDOUT: "true"
+  #     POSTGRES_USER: ssjson
+  #     POSTGRES_HOST: db
+  #     POSTGRES_DB: ssjson
+  #     POSTGRES_PASSWORD: ssjson
+  #   build: .
+  #   command: >
+  #     sh -c "echo starting database migrations &&
+  #           yarn && 
+  #           rails db:migrate &&
+  #           echo starting rails &&
+  #           rails s -b 0.0.0.0"
+  #   volumes:
+  #     - type: bind
+  #       source: ./app
+  #       target: /app/app
+  #       consistency: cached
+  #   ports:
+  #   - "3000:3000"
+  #   depends_on:
+  #   - db
 
 volumes:
   redis-data:
