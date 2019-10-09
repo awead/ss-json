@@ -36,9 +36,9 @@ steps:
     POSTGRES_HOST: postgres
     POSTGRES_PASSWORD: ssjson
   commands:
-    - rails db:create
-    - rails db:migrate
-    - rspec
+    - bundle exec rails db:create
+    - bundle exec rails db:migrate
+    - bundle exec rspec
 
 - name: update ArgoCD (prod)
   image: alpine/git
