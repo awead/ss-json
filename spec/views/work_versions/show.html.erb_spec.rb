@@ -10,13 +10,15 @@ RSpec.describe 'work_versions/show', type: :view do
     )
   end
 
-  let(:mock_policy) { instance_spy('WorkVersionPolicy') }
+  let(:mock_work_policy) { instance_spy('WorkPolicy') }
+  let(:mock_work_version_policy) { instance_spy('WorkVersionPolicy') }
 
   before do
     @work = assign(:work, work)
     @work_version = assign(:work_version, @work.versions.first)
     without_partial_double_verification do
-      allow(view).to receive(:policy).and_return(mock_policy)
+      allow(view).to receive(:policy).with(@work).and_return(mock_work_policy)
+      allow(view).to receive(:policy).with(@work_version).and_return(mock_work_version_policy)
     end
   end
 

@@ -1,22 +1,20 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item">
-      <%= link_to "Add Files", work_version_file_list_path(@work, @work_version) %>
-    </li>
-    <li class="breadcrumb-item active" aria-current="page">Add Metadata</li>
-    <% if @work_version.may_publish? %>
-      <li class="breadcrumb-item">
-        <%= link_to "Publish", work_version_publish_path(@work, @work_version) %>
-      </li>
+<%# TODO extract this to a smart partial/helper/presenter %>
+<div class="row">
+  <div class="col">
+    <ol class="progress-indicator">
+      <li class="is-complete" data-step="1">Create</li>
+      <li class="is-complete" data-step="2">Add Files</li>
+      <li class="is-active" data-step="3">Add Metadata</li>
+      <li data-step="4" class="progress__last">Publish</li>
+    </ol>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-8">
+    <%= form_with(model: @work_version, url: work_version_path(@work, @work_version), local: true) do |form| %>
+      <%= render 'form', work_version: @work_version, form: form %>
     <% end %>
-  </ol>
-</nav>
+  </div>
+</div>
 
-<h1>Editing Work Version</h1>
-
-<%= form_with(model: @work_version, url: work_version_path(@work, @work_version), local: true) do |form| %>
-  <%= render 'form', work_version: @work_version, form: form %>
-<% end %>
-
-<%= link_to 'Show', work_version_path(@work, @work_version) %> |
-<%= link_to 'Back', work_versions_path(@work) %>
