@@ -13,5 +13,6 @@
 <%= render 'form_fields', form: form %>
 
 <div class="actions">
-  <%= form.submit %>
+  <%= link_to "Back", work_version_file_list_path(@work, @work_version), class: 'btn btn-secondary' %>
+  <%= form.submit "Save and Continue", class: 'btn btn-primary' %>
 </div>

@@ -8,10 +8,7 @@ class WorkVersion < ApplicationRecord
     state :published, :withdrawn, :removed
 
     event :publish do
-      before do
-        # whatever we need to do...
-      end
-      transitions from: [:draft, :withdrawn], to: :published, guard: :valid_for_publication?
+      transitions from: [:draft, :withdrawn], to: :published
     end
 
     event :withdraw do
@@ -51,8 +48,23 @@ class WorkVersion < ApplicationRecord
     end
   end
 
-  def valid_for_publication?
-    true
+  validates :title,
+            presence: true
+
+  validates :file_resources,
+            presence: true,
+            if: :published?
+
+  validates :depositor_agreement,
+            acceptance: true,
+            if: :published?
+
+  def display_version_name
+    "Version: #{version_name.presence || version_index + 1}"
+  end
+
+  def version_index
+    work.versions.order(created_at: :asc).to_enum.with_index.find { |version, _index| version == self }.last || 0
   end
 
   private

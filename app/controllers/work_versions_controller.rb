@@ -10,6 +10,10 @@ class WorkVersionsController < ApplicationController
 
   def edit; end
 
+  def publish
+    @work_version = WorkVersion.find(params[:version_id])
+  end
+
   def create
     # @todo scope to return latest published version
     # Additional logic: validate does a draft version currently exist?
@@ -30,13 +34,26 @@ class WorkVersionsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @work_version.update(work_version_params)
+      @work_version.attributes = work_version_params
+      @work_version.publish if publish?
+      if @work_version.save
         format.html do
-          redirect_to work_version_path(@work, @work_version), notice: 'Work version was successfully updated.'
+          if publish?
+            redirect_to work_path(@work), notice: 'Successfully published work!! Yey!'
+          else
+            redirect_to work_version_publish_path(@work, @work_version),
+                        notice: 'Work version was successfully updated.'
+          end
         end
         format.json { render :show, status: :ok, location: @work_version }
       else
-        format.html { render :edit }
+        format.html do
+          if publish?
+            render :publish
+          else
+            render :edit
+          end
+        end
         format.json { render json: @work_version.errors, status: :unprocessable_entity }
       end
     end
@@ -78,7 +95,13 @@ class WorkVersionsController < ApplicationController
           :identifier,
           :based_near,
           :related_url,
-          :source
+          :source,
+          :depositor_agreement,
+          :version_name
         )
+    end
+
+    def publish?
+      params.key?(:publish)
     end
 end

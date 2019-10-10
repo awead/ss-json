@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Work, type: :model do
   describe 'table' do
-    it { is_expected.not_to have_db_column(:metadata).of_type(:jsonb) }
+    it { is_expected.to have_db_column(:work_type).of_type(:string) }
     it { is_expected.to have_db_column(:depositor_id) }
     it { is_expected.to have_db_index(:depositor_id) }
   end
@@ -17,6 +17,10 @@ RSpec.describe Work, type: :model do
     it { is_expected.to accept_nested_attributes_for(:versions) }
   end
 
+  describe 'validations' do
+    it { is_expected.to validate_inclusion_of(:work_type).in_array(Work::Types.all) }
+  end
+
   describe 'initialize' do
     it 'initializes a work version too' do
       expect(described_class.new.versions).not_to be_empty
@@ -26,6 +30,11 @@ RSpec.describe Work, type: :model do
       versions = [WorkVersion.new]
       new_work = described_class.new(versions: versions)
       expect(new_work.versions).to match_array(versions)
+    end
+  end
+
+  describe '#latest_version' do
+    it 'returns the latest version in any state' do
     end
   end
 end

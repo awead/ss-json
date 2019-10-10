@@ -1,0 +1,26 @@
+<h2>Versions</h2>
+<%= link_to('Create New Version', work_versions_path(work), method: :post, class: 'btn btn-primary') if policy(work).create_version? %>
+
+<div class="versions-sidebar-list">
+  <% work.versions.order(created_at: :desc).each_with_index do |work_version, index| %>
+    <% is_active = active == work_version %>
+
+    <div class="card <%= 'border-primary' if is_active%>">
+      <h5 class="card-header <%= 'border-primary' if is_active %>">
+        <%= work_version.display_version_name %>
+        <%= work_version_badge work_version, optional_class: 'float-right' %>
+      </h5>
+      <div class="card-body">
+        <h5 class="card-title">
+          <%= work_version.title %>
+        </h5>
+        <p class="card-text"><%= work_version.description %></p>
+        <%= link_to 'View', work_version_path(@work, work_version) %>
+        <% if policy(work_version).edit? %>
+          | <%= link_to 'Edit', work_version_file_list_path(@work, work_version) %>
+        <% end %>
+      </div>
+    </div>
+
+  <% end %>
+</div>

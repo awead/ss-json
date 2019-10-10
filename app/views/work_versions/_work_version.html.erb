@@ -1,13 +1,18 @@
+<%# NOTE, this file is probably going away, as it has been subsumed (maybe?) by
+    works/_versions_sidebar, but we're not quite ready to commit yet. %>
 
-<div class="card">
-  <h5 class="card-header"><%= work_version.version_name || "Version #{work_version_iteration.index + 1}"  %></h5>
+<% is_active = active == work_version %>
+
+<div class="card <%= 'border-primary' if is_active%>">
+  <h5 class="card-header <%= 'border-primary' if is_active %>"><%= work_version.version_name || "Version #{work_version_iteration.index + 1}"  %></h5>
   <div class="card-body">
     <h5 class="card-title">
       <%= work_version.title %><span class="badge badge-primary"><%= work_version.aasm_state %></span>
     </h5>
     <p class="card-text"><%= work_version.description %></p>
-    <%= link_to 'Details', work_version_path(@work, work_version) %> |
-    <%= link_to 'Edit', edit_work_version_path(@work, work_version) %>
-
+    <%= link_to 'View', work_version_path(@work, work_version) %>
+    <% if policy(work_version).edit? %>
+      | <%= link_to 'Edit', edit_work_version_path(@work, work_version) %>
+    <% end %>
   </div>
 </div>

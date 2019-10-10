@@ -37,7 +37,12 @@ RSpec.describe WorkVersionsController, type: :controller do
     skip('Add a hash of attributes invalid for your model')
   }
 
-  let(:work) { User.create.works.create }
+  let(:work) do
+    User.create.works.create(
+      work_type: Work::Types.all.first,
+      versions_attributes: [{ title: 'Sample Work' }]
+    )
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in

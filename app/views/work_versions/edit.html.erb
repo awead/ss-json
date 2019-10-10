@@ -1,8 +1,20 @@
-<h1>Editing Work Version</h1>
+<%# TODO extract this to a smart partial/helper/presenter %>
+<div class="row">
+  <div class="col">
+    <ol class="progress-indicator">
+      <li class="is-complete" data-step="1">Create</li>
+      <li class="is-complete" data-step="2">Add Files</li>
+      <li class="is-active" data-step="3">Add Metadata</li>
+      <li data-step="4" class="progress__last">Publish</li>
+    </ol>
+  </div>
+</div>
 
-<%= form_with(model: @work_version, url: work_version_path(@work, @work_version), local: true) do |form| %>
-  <%= render 'form', work_version: @work_version, form: form %>
-<% end %>
+<div class="row">
+  <div class="col-sm-8">
+    <%= form_with(model: @work_version, url: work_version_path(@work, @work_version), local: true) do |form| %>
+      <%= render 'form', work_version: @work_version, form: form %>
+    <% end %>
+  </div>
+</div>
 
-<%= link_to 'Show', work_version_path(@work, @work_version) %> |
-<%= link_to 'Back', work_versions_path(@work) %>

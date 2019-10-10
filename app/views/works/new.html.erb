@@ -1,5 +1,21 @@
-<h1>New Work</h1>
+<%# TODO extract this to a smart partial/helper/presenter %>
+<div class="row">
+  <div class="col">
+    <ol class="progress-indicator">
+      <li class="is-active" data-step="1">Create</li>
+      <li data-step="2">Add Files</li>
+      <li data-step="3">Add Metadata</li>
+      <li data-step="4" class="progress__last">Publish</li>
+    </ol>
+  </div>
+</div>
 
-<%= render 'form', work: @work %>
 
-<%= link_to 'Back', works_path %>
+<div class="row">
+  <div class="col-sm-8">
+    <h1>Create A New Work</h1>
+    <%= render 'form', work: @work %>
+
+    <%= link_to 'Back', works_path %>
+  </div>
+</div>

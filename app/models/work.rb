@@ -11,6 +11,40 @@ class Work < ApplicationRecord
 
   after_initialize :set_defaults
 
+  module Types
+    DATASET = 'dataset'
+
+    def self.all
+      [DATASET]
+    end
+
+    def self.display(type)
+      type.humanize.titleize
+    end
+
+    def self.options_for_select_box
+      all
+        .sort
+        .map { |type| [display(type), type] }
+    end
+  end
+
+  validates :work_type,
+            presence: true,
+            inclusion: { in: Types.all }
+
+  def latest_version
+    versions.last
+  end
+
+  def latest_published_version
+    versions.published.last
+  end
+
+  def draft_version
+    versions.draft.last
+  end
+
   private
 
     def set_defaults
