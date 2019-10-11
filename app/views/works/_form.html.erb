@@ -23,11 +23,11 @@
   <div class="form-group">
     <%= form.label :work_type %>
     <div class="input-group">
-      <%= form.select :work_type, Work::Types.options_for_select_box, class: 'form-control' %>
+      <%= form.select :work_type, Work::Types.options_for_select_box, {}, { class: 'form-control' } %>
     </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>

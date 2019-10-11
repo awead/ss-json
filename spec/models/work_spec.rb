@@ -32,4 +32,9 @@ RSpec.describe Work, type: :model do
       expect(new_work.versions).to match_array(versions)
     end
   end
+
+  describe '#latest_version' do
+    it 'returns the latest version in any state' do
+    end
+  end
 end

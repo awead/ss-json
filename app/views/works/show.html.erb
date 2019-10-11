@@ -2,8 +2,15 @@
 
 <h1>Latest Version</h1>
 
-<%= render partial: 'work_versions/show_fields', locals: { work_version: @work.versions.last } %>
+<div class="row">
+  <div class="col-sm-8">
+    <%= work_version_badge @work.latest_version %>
 
-<%= link_to 'Back', works_path %> |
-<%= link_to 'New Version', new_work_version_path(@work) %> |
-<%= link_to 'All Versions', work_versions_path(@work) %>
+    <%= render partial: 'work_versions/show_fields', locals: { work_version: @work.latest_version } %>
+    <%= render partial: 'work_versions/show_files', locals: { work_version: @work.latest_version } %>
+  </div>
+
+  <div class="col-sm-4">
+    <%= render 'versions_sidebar', work: @work, active: @work.versions.last %>
+  </div>
+</div>

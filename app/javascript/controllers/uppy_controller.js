@@ -9,7 +9,7 @@ export default class extends Controller {
     this.parentForm = document.getElementById(this.data.get('parentForm'))
     this.blacklist = JSON.parse( this.data.get('blacklist') || '[]' )
 
-    this.uploadSubmit.style.visibility='hidden'
+    // this.uploadSubmit.style.visibility='hidden'
     this.initialize_uppy()
   }
 
@@ -40,7 +40,7 @@ export default class extends Controller {
   }
 
   onUppyComplete(result) {
-    this.uploadSubmit.style.visibility='visible'
+    // this.uploadSubmit.style.visibility='visible'
     result.successful.forEach(success => {
       this.parentForm.appendChild(this.createHiddenFileInput(success))
     })

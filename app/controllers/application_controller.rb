@@ -18,4 +18,10 @@ class ApplicationController < ActionController::Base
             )
           end
       end
+  include Pundit
+
+  helper_method :current_user
+  def current_user
+    @current_user ||= (User.all.first || User.create)
+  end
 end

@@ -1,12 +1,11 @@
-<% latest_version = work.versions.last %>
 <div class="card">
   <h5 class="card-header"><%= "Latest version: #{work.versions.count}" %></h5>
   <div class="card-body">
     <h5 class="card-title">
-      <%= latest_version.title || "No Title" %>
-      <span class="badge badge-primary"><%= latest_version.aasm_state %></span>
+      <%= work.latest_version.title || "No Title" %>
+      <span class="badge badge-primary"><%= work.latest_version.aasm_state %></span>
     </h5>
-    <p class="card-text"><%= latest_version.description %></p>
+    <p class="card-text"><%= work.latest_version.description %></p>
     <%= link_to "Details", work %>
   </div>
 </div>
