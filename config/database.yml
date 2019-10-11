@@ -20,6 +20,7 @@ default: &default
   database: <%= ENV.fetch("POSTGRES_DB", "ss-json") %>
   username: <%= ENV.fetch("POSTGRES_USER", "ss-json") %>
   password: <%= ENV.fetch("POSTGRES_PASSWORD", nil) %>
+  port: <%= ENV.fetch("POSTGRES_PORT", nil ) %>
   host: <%= ENV.fetch("POSTGRES_HOST", nil) %>
 
   # For details on connection pooling, see Rails configuration guide

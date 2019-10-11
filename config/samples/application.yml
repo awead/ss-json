@@ -2,6 +2,12 @@
 
 development:
   POSTGRES_DB: "ss-json_development"
+  OAUTH_APP_ID: ""
+  OAUTH_APP_URL: ""
+  OAUTH_APP_SECRET: ""
 
 test:
   POSTGRES_DB: "ss-json_test"
+  OAUTH_APP_ID: ""
+  OAUTH_APP_URL: ""
+  OAUTH_APP_SECRET: ""
