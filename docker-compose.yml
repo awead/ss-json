@@ -24,7 +24,7 @@ services:
   #   ports:
   #   # my vscode gobbles up port 9000
   #   - "9001:9001"
-  dbjson:
+  db:
     environment:
       POSTGRES_PASSWORD: ssjson
       POSTGRES_USER: ssjson
@@ -58,8 +58,3 @@ volumes:
   redis-data:
   minio:
   db-data:
-
-networks:
-  ss-json_default:
-  psu-authproxy_default:
-    external: true
